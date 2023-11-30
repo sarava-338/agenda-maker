@@ -49,6 +49,7 @@ export default function App() {
 
   const handleTitleInputChange = e => {
     setTitle(e.target.value);
+    console.log(e)
   };
 
   const handleDescriptionInputChange = e => {
