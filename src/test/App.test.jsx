@@ -29,43 +29,62 @@ const mockAgenda = [
   },
 ];
 
-const addNewData = {
-  title: 'react',
-  description: 'react description',
-  topics: ['Introduction', 'Why React?', 'Types of Components'],
-};
+const testData = [
+  {
+    title: 'react',
+    description: 'react description',
+    topics: ['Introduction', 'Why React?', 'Types of Components'],
+  },
 
-const addNewData1 = {
-  title: 'Java',
-  description: 'java description',
-  topics: ['Introduction', 'java basics', 'OOPs concepts', 'Frameworks'],
-};
+  {
+    title: 'Java',
+    description: 'java description',
+    topics: ['Introduction', 'java basics', 'OOPs concepts', 'Frameworks'],
+  },
 
-const addNewData2 = {
-  title: 'Python',
-  description: 'python description',
-  topics: [
-    'Introduction',
-    'python basics',
-    'Frameworks',
-    'python in data science',
-    'Why Python?',
-  ],
-};
+  {
+    title: 'Python',
+    description: 'python description',
+    topics: ['Introduction', 'python basics', 'Frameworks', 'python in data science', 'Why Python?'],
+  },
+];
 
-const dispatchInput = (selector, value) => {
-  userEvent.type(screen.queryByRole(selector), value);
+// const testData[0] = {
+//   title: 'react',
+//   description: 'react description',
+//   topics: ['Introduction', 'Why React?', 'Types of Components'],
+// };
+
+// const testData[1] = {
+//   title: 'Java',
+//   description: 'java description',
+//   topics: ['Introduction', 'java basics', 'OOPs concepts', 'Frameworks'],
+// };
+
+// const testData[2] = {
+//   title: 'Python',
+//   description: 'python description',
+//   topics: [
+//     'Introduction',
+//     'python basics',
+//     'Frameworks',
+//     'python in data science',
+//     'Why Python?',
+//   ],
+// };
+
+const dispatchInput = async (selector, value) => {
+  await userEvent.type(screen.queryByRole(selector), value);
 };
 
 const getIdText = selector => screen.getByTestId(selector).textContent.trim();
 
-const addTopic = (inputElm, value) => {
-  userEvent.type(inputElm, value);
+const addTopic = async (inputElm, value) => {
+  await userEvent.type(inputElm, value);
   fireEvent.click(screen.queryByRole('addTopicBtn'));
 };
 
-const getText = (elm, selector) =>
-  elm.querySelector(selector).textContent.trim();
+const getText = (elm, selector) => elm.querySelector(selector).textContent.trim();
 
 const getText2 = elm => elm.textContent.trim();
 
@@ -83,13 +102,13 @@ test('1. Should display initial UI', async () => {
 });
 
 test('2. form validation - invalid', async () => {
-  dispatchInput('inputTitle', ' ');
+  await dispatchInput('inputTitle', ' ');
   expect(getIdText('invalidTitle')).toEqual('Title is required');
 
-  dispatchInput('inputDescription', '  ');
+  await dispatchInput('inputDescription', '  ');
   expect(getIdText('invalidDescription')).toEqual('Description is required');
 
-  dispatchInput('inputTopic', '    ');
+  await dispatchInput('inputTopic', '    ');
   expect(getIdText('invalidTopic')).toEqual('Topic is required');
 
   expect(screen.queryByRole('addTopicBtn')).toBeDisabled();
@@ -97,13 +116,13 @@ test('2. form validation - invalid', async () => {
 });
 
 test('3. form validation - valid add btn', async () => {
-  dispatchInput('inputTitle', ' ');
+  await dispatchInput('inputTitle', ' ');
   expect(getIdText('invalidTitle')).toEqual('Title is required');
 
-  dispatchInput('inputDescription', '  ');
+  await dispatchInput('inputDescription', '  ');
   expect(getIdText('invalidDescription')).toEqual('Description is required');
 
-  dispatchInput('inputTopic', addNewData.topics[0]);
+  await dispatchInput('inputTopic', testData[0].topics[0]);
   expect(getIdText('invalidTopic')).toEqual('');
 
   expect(screen.queryByRole('addTopicBtn')).not.toBeDisabled();
@@ -111,13 +130,13 @@ test('3. form validation - valid add btn', async () => {
 });
 
 test('4. form validation - invalid submit', async () => {
-  dispatchInput('inputTitle', addNewData.title);
+  await dispatchInput('inputTitle', testData[0].title);
   expect(getIdText('invalidTitle')).toEqual('');
 
-  dispatchInput('inputDescription', addNewData.description);
+  await dispatchInput('inputDescription', testData[0].description);
   expect(getIdText('invalidDescription')).toEqual('');
 
-  dispatchInput('inputTopic', addNewData.topics[0]);
+  await dispatchInput('inputTopic', testData[0].topics[0]);
   expect(getIdText('invalidTopic')).toEqual('');
 
   expect(screen.queryByRole('addTopicBtn')).not.toBeDisabled();
@@ -125,13 +144,13 @@ test('4. form validation - invalid submit', async () => {
 });
 
 test('5. form validation - valid submit', async () => {
-  dispatchInput('inputTitle', addNewData.title);
+  await dispatchInput('inputTitle', testData[0].title);
   expect(getIdText('invalidTitle')).toEqual('');
 
-  dispatchInput('inputDescription', addNewData.description);
+  await dispatchInput('inputDescription', testData[0].description);
   expect(getIdText('invalidDescription')).toEqual('');
 
-  addTopic(screen.queryByRole('inputTopic'), addNewData.topics[0]);
+  await addTopic(screen.queryByRole('inputTopic'), testData[0].topics[0]);
   expect(getIdText('invalidTopic')).toEqual('');
   expect(screen.queryByTestId('noTopicsMsg')).not.toBeInTheDocument();
 
@@ -156,19 +175,19 @@ test('6. toggle view check', async () => {
 test('7. check form inputs', async () => {
   const topicInput = screen.queryByRole('inputTopic');
 
-  addTopic(topicInput, addNewData.topics[0]);
+  await addTopic(topicInput, testData[0].topics[0]);
   let data = screen.queryByRole('topicList');
-  expect(data[0].textContent).toEqual(addNewData.topics[0]);
+  expect(data[0].textContent).toEqual(testData[0].topics[0]);
   expect(topicInput).toHaveValue('');
 
-  addTopic(topicInput, addNewData.topics[1]);
+  await addTopic(topicInput, testData[0].topics[1]);
   data = screen.queryByRole('topicList');
-  expect(data[0].textContent).toEqual(addNewData.topics[1]);
+  expect(data[0].textContent).toEqual(testData[0].topics[1]);
   expect(topicInput).toHaveValue('');
 
-  addTopic(topicInput, addNewData.topics[2]);
+  await addTopic(topicInput, testData[0].topics[2]);
   data = screen.queryByRole('topicList');
-  expect(data[0].textContent).toEqual(addNewData.topics[2]);
+  expect(data[0].textContent).toEqual(testData[0].topics[2]);
   expect(topicInput).toHaveValue('');
 });
 
@@ -180,8 +199,7 @@ test('8. check view Agenda', async () => {
     expect(getText(data[i], '.card-header')).toEqual(mockAgenda[i].title);
     expect(getText(data[i], '.card-footer')).toEqual(mockAgenda[i].description);
     let lis = data[i].querySelectorAll('li');
-    for (let j = 0; j < mockAgenda[i].topics.length; j++)
-      expect(getText2(lis[j])).toEqual(mockAgenda[i].topics[j]);
+    for (let j = 0; j < mockAgenda[i].topics.length; j++) expect(getText2(lis[j])).toEqual(mockAgenda[i].topics[j]);
   }
 });
 
@@ -190,22 +208,21 @@ test('9. add and view agenda - 1', async () => {
   const descriptionInput = screen.queryByRole('inputDescription');
   const topicInput = screen.queryByRole('inputTopic');
 
-  userEvent.type(titleInput, addNewData.title);
-  userEvent.type(descriptionInput, addNewData.description);
-  addTopic(topicInput, addNewData.topics[0]);
-  addTopic(topicInput, addNewData.topics[1]);
-  addTopic(topicInput, addNewData.topics[2]);
+  userEvent.type(titleInput, testData[0].title);
+  userEvent.type(descriptionInput, testData[0].description);
+  await addTopic(topicInput, testData[0].topics[0]);
+  await addTopic(topicInput, testData[0].topics[1]);
+  await addTopic(topicInput, testData[0].topics[2]);
 
   fireEvent.click(screen.queryByRole('submitAgendaBtn'));
   fireEvent.click(screen.queryByRole('goToView'));
   await waitFor(() => screen.queryByRole('viewAgenda'));
 
   const data = screen.queryByRole('cards');
-  expect(getText(data[2], '.card-header')).toEqual(addNewData.title);
-  expect(getText(data[2], '.card-footer')).toEqual(addNewData.description);
+  expect(getText(data[2], '.card-header')).toEqual(testData[0].title);
+  expect(getText(data[2], '.card-footer')).toEqual(testData[0].description);
   let lis = data[2].querySelectorAll('li');
-  for (let j = 0; j < addNewData.topics.length; j++)
-    expect(getText2(lis[j])).toEqual(addNewData.topics[j]);
+  for (let j = 0; j < testData[0].topics.length; j++) expect(getText2(lis[j])).toEqual(testData[0].topics[j]);
 });
 
 test('10. add and view agenda - 2', async () => {
@@ -213,17 +230,17 @@ test('10. add and view agenda - 2', async () => {
   const descriptionInput = screen.queryByRole('inputDescription');
   const topicInput = screen.queryByRole('inputTopic');
 
-  userEvent.type(titleInput, addNewData1.title);
-  userEvent.type(descriptionInput, addNewData1.description);
-  addNewData1.topics.forEach(topic => {
-    addTopic(topicInput, topic);
+  userEvent.type(titleInput, testData[1].title);
+  userEvent.type(descriptionInput, testData[1].description);
+  testData[1].topics.forEach(async topic => {
+    await addTopic(topicInput, topic);
   });
   fireEvent.click(screen.queryByRole('submitAgendaBtn'));
 
-  userEvent.type(titleInput, addNewData2.title);
-  userEvent.type(descriptionInput, addNewData2.description);
-  addNewData2.topics.forEach(topic => {
-    addTopic(topicInput, topic);
+  userEvent.type(titleInput, testData[2].title);
+  userEvent.type(descriptionInput, testData[2].description);
+  testData[2].topics.forEach(async topic => {
+    await addTopic(topicInput, topic);
   });
   fireEvent.click(screen.queryByRole('submitAgendaBtn'));
 
@@ -233,14 +250,12 @@ test('10. add and view agenda - 2', async () => {
   const data = screen.queryByRole('cards');
 
   let lis1 = data[2].querySelectorAll('li');
-  expect(getText(data[2], '.card-header')).toEqual(addNewData1.title);
-  expect(getText(data[2], '.card-footer')).toEqual(addNewData1.description);
-  for (let j = 0; j < addNewData1.topics.length; j++)
-    expect(getText2(lis1[j])).toEqual(addNewData1.topics[j]);
+  expect(getText(data[2], '.card-header')).toEqual(testData[1].title);
+  expect(getText(data[2], '.card-footer')).toEqual(testData[1].description);
+  for (let j = 0; j < testData[1].topics.length; j++) expect(getText2(lis1[j])).toEqual(testData[1].topics[j]);
 
   let lis2 = data[3].querySelectorAll('li');
-  expect(getText(data[3], '.card-header')).toEqual(addNewData2.title);
-  expect(getText(data[3], '.card-footer')).toEqual(addNewData2.description);
-  for (let j = 0; j < addNewData2.topics.length; j++)
-    expect(getText2(lis2[j])).toEqual(addNewData2.topics[j]);
+  expect(getText(data[3], '.card-header')).toEqual(testData[2].title);
+  expect(getText(data[3], '.card-footer')).toEqual(testData[2].description);
+  for (let j = 0; j < testData[2].topics.length; j++) expect(getText2(lis2[j])).toEqual(testData[2].topics[j]);
 });

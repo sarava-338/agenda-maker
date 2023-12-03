@@ -87,11 +87,7 @@ export default function App() {
       {/** show/hide this following add agenda template */}
       {!showAgenda ? (
         <div className='container' role='addAgenda'>
-          <button
-            className='btn btn-info'
-            role='goToView'
-            onClick={toggleViewAgenda}
-          >
+          <button className='btn btn-info' role='goToView' onClick={toggleViewAgenda}>
             Click To View Agenda
           </button>
           <form>
@@ -100,15 +96,7 @@ export default function App() {
                 Title
               </label>
               {/* title */}
-              <input
-                type='text'
-                name='newTitle'
-                placeholder='Enter the title'
-                role='inputTitle'
-                className='form-control'
-                onChange={handleTitleInputChange}
-                value={title}
-              />
+              <input type='text' name='newTitle' placeholder='Enter the title' role='inputTitle' className='form-control' onChange={handleTitleInputChange} value={title} />
               <small className='text-danger' data-testid='invalidTitle'>
                 {isTitleValid ? '' : 'Title is required'}
               </small>
@@ -119,15 +107,7 @@ export default function App() {
                 Description
               </label>
               {/* Description */}
-              <input
-                type='text'
-                name='newDescription'
-                placeholder='Enter the description'
-                role='inputDescription'
-                className='form-control'
-                onChange={handleDescriptionInputChange}
-                value={description}
-              />
+              <input type='text' name='newDescription' placeholder='Enter the description' role='inputDescription' className='form-control' onChange={handleDescriptionInputChange} value={description} />
               <small className='text-danger' data-testid='invalidDescription'>
                 {isDescriptionValid ? '' : 'Description is required'}
               </small>
@@ -138,43 +118,25 @@ export default function App() {
                 Topic
               </label>
               {/* Topic */}
-              <input
-                type='text'
-                name='newTopic'
-                placeholder='Enter the Topic'
-                role='inputTopic'
-                className='form-control'
-                onChange={handleTopicInputChange}
-                value={topic}
-              />
+              <input type='text' name='newTopic' placeholder='Enter the Topic' role='inputTopic' className='form-control' onChange={handleTopicInputChange} value={topic} />
               <small className='text-danger' data-testid='invalidTopic'>
                 {isTopicsValid || isTopicValid ? '' : 'Topic is required'}
               </small>
             </div>
 
             {/** on click should add topics and disable the button if invalid topic*/}
-            <button
-              className='btn btn-success addAlign'
-              role='addTopicBtn'
-              disabled={isAddTopicBtnDisabled}
-              onClick={handleAddTopic}
-            >
+            <button className='btn btn-success addAlign' role='addTopicBtn' disabled={isAddTopicBtnDisabled} onClick={handleAddTopic}>
               + Add Topic
             </button>
 
             {/** on click should add the agenda and disable the button if invalid inputs*/}
-            <button
-              className='btn btn-success submitAlign'
-              role='submitAgendaBtn'
-              disabled={isSubmitAgendaBtnDisabled}
-              onClick={handleSubmitAgenda}
-            >
+            <button className='btn btn-success submitAlign' role='submitAgendaBtn' disabled={isSubmitAgendaBtnDisabled} onClick={handleSubmitAgenda}>
               Submit Agenda
             </button>
           </form>
 
           {/**  show if no topics added yet*/}
-          {!topics.length && (
+          {!isTopicsValid && (
             <div className='text-danger ml-2 mt-5' data-testid='noTopicsMsg'>
               No Topics Added
             </div>
@@ -197,11 +159,7 @@ export default function App() {
         </div>
       ) : (
         <div className='container' role='viewAgenda'>
-          <button
-            className='btn btn-info'
-            role='goToAdd'
-            onClick={toggleViewAgenda}
-          >
+          <button className='btn btn-info' role='goToAdd' onClick={toggleViewAgenda}>
             Click to Add Agenda
           </button>
           {/** iterate the agenda details to display */}

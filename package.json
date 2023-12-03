@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "start": "npm run dev",
-    "test": "react-scripts test --testResultsProcessor=\"jest-junit\" --watchAll=false",
+    "test": "react-scripts test --watchAll=false",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

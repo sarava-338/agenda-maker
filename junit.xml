@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="10" failures="7" errors="0" time="21.563">
-  <testsuite name="undefined" errors="0" failures="7" skipped="0" timestamp="2023-11-05T10:35:15" time="12.912" tests="10">
-    <testcase classname=" 1. Should display initial UI" name=" 1. Should display initial UI" time="0.415">
+<testsuites name="jest tests" tests="10" failures="7" errors="0" time="28.615">
+  <testsuite name="undefined" errors="0" failures="7" skipped="0" timestamp="2023-11-30T16:58:02" time="17.257" tests="10">
+    <testcase classname=" 1. Should display initial UI" name=" 1. Should display initial UI" time="0.503">
     </testcase>
-    <testcase classname=" 2. form validation - invalid" name=" 2. form validation - invalid" time="0.209">
+    <testcase classname=" 2. form validation - invalid" name=" 2. form validation - invalid" time="0.188">
     </testcase>
-    <testcase classname=" 3. form validation - valid add btn" name=" 3. form validation - valid add btn" time="0.137">
+    <testcase classname=" 3. form validation - valid add btn" name=" 3. form validation - valid add btn" time="0.133">
       <failure>Error: expect(received).toEqual(expected) // deep equality
 
 Expected: &quot;&quot;
@@ -29,7 +29,7 @@ Received: &quot;Topic is required&quot;
     at runCLI (/home/sarava338/sarava-338/agenda-maker/node_modules/react-scripts/node_modules/@jest/core/build/cli/index.js:173:3)
     at Object.run (/home/sarava338/sarava-338/agenda-maker/node_modules/react-scripts/node_modules/jest-cli/build/cli/index.js:155:37)</failure>
     </testcase>
-    <testcase classname=" 4. form validation - invalid submit" name=" 4. form validation - invalid submit" time="0.06">
+    <testcase classname=" 4. form validation - invalid submit" name=" 4. form validation - invalid submit" time="0.064">
       <failure>Error: expect(received).toEqual(expected) // deep equality
 
 Expected: &quot;&quot;
@@ -53,7 +53,7 @@ Received: &quot;Title is required&quot;
     at runCLI (/home/sarava338/sarava-338/agenda-maker/node_modules/react-scripts/node_modules/@jest/core/build/cli/index.js:173:3)
     at Object.run (/home/sarava338/sarava-338/agenda-maker/node_modules/react-scripts/node_modules/jest-cli/build/cli/index.js:155:37)</failure>
     </testcase>
-    <testcase classname=" 5. form validation - valid submit" name=" 5. form validation - valid submit" time="0.065">
+    <testcase classname=" 5. form validation - valid submit" name=" 5. form validation - valid submit" time="0.062">
       <failure>Error: expect(received).toEqual(expected) // deep equality
 
 Expected: &quot;&quot;
@@ -77,9 +77,9 @@ Received: &quot;Title is required&quot;
     at runCLI (/home/sarava338/sarava-338/agenda-maker/node_modules/react-scripts/node_modules/@jest/core/build/cli/index.js:173:3)
     at Object.run (/home/sarava338/sarava-338/agenda-maker/node_modules/react-scripts/node_modules/jest-cli/build/cli/index.js:155:37)</failure>
     </testcase>
-    <testcase classname=" 6. toggle view check" name=" 6. toggle view check" time="0.514">
+    <testcase classname=" 6. toggle view check" name=" 6. toggle view check" time="0.483">
     </testcase>
-    <testcase classname=" 7. check form inputs" name=" 7. check form inputs" time="0.214">
+    <testcase classname=" 7. check form inputs" name=" 7. check form inputs" time="0.137">
       <failure>TypeError: Cannot read properties of undefined (reading &apos;textContent&apos;)
     at Object.&lt;anonymous&gt; (/home/sarava338/sarava-338/agenda-maker/src/test/App.test.jsx:161:18)
     at Promise.then.completed (/home/sarava338/sarava-338/agenda-maker/node_modules/react-scripts/node_modules/jest-circus/build/utils.js:391:28)
@@ -103,7 +103,7 @@ Received: &quot;Title is required&quot;
     at runCLI (/home/sarava338/sarava-338/agenda-maker/node_modules/react-scripts/node_modules/@jest/core/build/cli/index.js:173:3)
     at Object.run (/home/sarava338/sarava-338/agenda-maker/node_modules/react-scripts/node_modules/jest-cli/build/cli/index.js:155:37)</failure>
     </testcase>
-    <testcase classname=" 8. check view Agenda" name=" 8. check view Agenda" time="0.149">
+    <testcase classname=" 8. check view Agenda" name=" 8. check view Agenda" time="0.171">
       <failure>TestingLibraryElementError: Found multiple elements with the role &quot;cards&quot;
 
 Here are the matching elements:
@@ -339,7 +339,7 @@ Ignored nodes: comments, script, style
     at listOnTimeout (node:internal/timers:533:9)
     at processTimers (node:internal/timers:507:7)</failure>
     </testcase>
-    <testcase classname=" 9. add and view agenda - 1" name=" 9. add and view agenda - 1" time="0.344">
+    <testcase classname=" 9. add and view agenda - 1" name=" 9. add and view agenda - 1" time="0.351">
       <failure>TestingLibraryElementError: Found multiple elements with the role &quot;cards&quot;
 
 Here are the matching elements:
@@ -575,7 +575,7 @@ Ignored nodes: comments, script, style
     at listOnTimeout (node:internal/timers:533:9)
     at processTimers (node:internal/timers:507:7)</failure>
     </testcase>
-    <testcase classname=" 10. add and view agenda - 2" name=" 10. add and view agenda - 2" time="0.537">
+    <testcase classname=" 10. add and view agenda - 2" name=" 10. add and view agenda - 2" time="0.527">
       <failure>TestingLibraryElementError: Found multiple elements with the role &quot;cards&quot;
 
 Here are the matching elements:
